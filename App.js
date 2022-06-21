@@ -1,55 +1,82 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View,Button } from 'react-native';
-import { TextInput } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import { useState } from "react";
+import { StyleSheet, Text, View, Button,TextInput,ScrollView } from "react-native";
+
 
 export default function App() {
-function goalInputHandler(){};
+  const [enteredGoalText, setEnteredGoalText] = useState("");
+  const [courseGoals, setCourseGoals] = useState([]);
 
-function addGoalHandler(){};
+  function goalInputHandler(enteredText) {
+    setEnteredGoalText(enteredText);
+  }
+
+  function addGoalHandler() {
+    setCourseGoals((currentCourseGoals) => [
+      ...currentCourseGoals,
+      enteredGoalText,
+    ]);
+  }
 
   return (
-    
     <View style={styles.appContainer}>
       <View style={styles.inputContainer}>
-      <TextInput style={styles.textInput} placeholder='Your Course Goal' />
-      <Button title ="Add Goal" />
+        <TextInput
+          style={styles.textInput}
+          placeholder="Your Course Goal"
+          onChangeText={goalInputHandler}
+        />
+        <Button title="Add Goal" onPress={addGoalHandler} />
       </View>
       <View style={styles.goalsContainer}>
-        <Text> List of goals...</Text>
+      <ScrollView>
+        {courseGoals.map((goal) => (
+          <View key={goal} style={styles.goalItem}>
+            <Text style={styles.goalText}>{goal}</Text>
+          </View>
+        ))}
+      </ScrollView>
       </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-   
-  appContainer:{
-    flex:1,
-    padding:50,
-    paddingHorizontal:16,
+  appContainer: {
+    flex: 1,
+    padding: 50,
+    paddingHorizontal: 16,
   },
 
-  inputContainer:{
-    flex:1,
-    flexDirection:'row',
-    justifyContent:'space-between',
-    alignItems:'center',
-    //paddingBottom:24,
-    marginBottom:24,
-    borderBottomWidth:1,
-    borderBottomColor:'lightgray',
-
-  }, 
-  textInput:{
-      borderWidth:1,
-      borderColor:'lightgray',
-      width: '70%',
-      marginRight:8,
-      padding:8,
-
+  inputContainer: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingBottom:24,
+    marginBottom: 24,
+    borderBottomWidth: 1,
+    borderBottomColor: "lightgray",
   },
-  goalsContainer:{
+  textInput: {
+    borderWidth: 1,
+    borderColor: "lightgray",
+    width: "70%",
+    marginRight: 8,
+    padding: 8,
+  },
+  goalsContainer: {
+    flex: 5,
+  },
+  goalItem: {
+    margin: 8,
+    padding: 8,
+    borderRadius: 6,
+    backgroundColor: "lightgray",
+    
+  },
 
-    flex:5,
+  goalText:{
+    color: "black",
   }
 });
