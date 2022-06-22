@@ -1,5 +1,4 @@
-// 2:20:57 https://www.youtube.com/watch?v=VozPNrt-LfE&ab_channel=Academind
-
+import React from 'react'
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import {StyleSheet,View,Button,FlatList,} from "react-native";
