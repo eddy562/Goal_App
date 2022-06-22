@@ -2,8 +2,8 @@
 
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
-import {
-  StyleSheet,View,Button,FlatList,} from "react-native";
+import {StyleSheet,View,Button,FlatList,} from "react-native";
+
 
 import GoalItem from "./components/GoalItem";
 import GoalInput from "./components/GoalInput";
@@ -16,6 +16,10 @@ export default function App() {
   function startAddGoalHandler(){
 
     setModalIsVisible(true);
+
+  }
+function endAddGoalhandler(){
+  setModalIsVisible(false);
   }
 
   function addGoalHandler(enteredGoalText) {
@@ -23,6 +27,7 @@ export default function App() {
       ...currentCourseGoals,
       { text: enteredGoalText,id:Math.random().toString()},
     ]);
+    endAddGoalhandler();
   }
 
   function deleteGoalHandler(id){
@@ -33,11 +38,16 @@ export default function App() {
   }
 
   return (
+    <>
+   <StatusBar style="auto"/>
     <View style={styles.appContainer}>
-      <Button title ='Add New Goal' color="lightgray" 
+      <Button title ='Add New Goal' color="#5e0acc" 
       onPress={startAddGoalHandler}/>
 
-      <GoalInput visible={modalIsVisible} onAddGoal={addGoalHandler}/>
+      <GoalInput visible={modalIsVisible} 
+      onAddGoal={addGoalHandler}
+      onCancel={endAddGoalhandler}
+      />
       <View style={styles.goalsContainer}>
         <FlatList
           data={courseGoals}
@@ -54,6 +64,7 @@ export default function App() {
         />
       </View>
     </View>
+    </>
   );
 }
 
@@ -62,6 +73,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 50,
     paddingHorizontal: 16,
+    backgroundColor:'#05c538' // 2nd page color
   },
 
   
