@@ -52,7 +52,7 @@ const styles= StyleSheet.create ({
         paddingBottom: 24,
         padding:16,
         borderBottomColor: 'lightgray',
-        backgroundColor:'#05c538' // first page color
+        backgroundColor:'#1ECBE1' // first page color
       },
       textInput: {
         borderWidth: 1,

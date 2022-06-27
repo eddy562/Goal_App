@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 50,
     paddingHorizontal: 16,
-    backgroundColor:'#05c538' // 2nd page color
+    backgroundColor:'#1ECBE1' // 2nd page color
   },
 
   

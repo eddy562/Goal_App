@@ -23,7 +23,6 @@ const styles = StyleSheet.create({
 
     goalItem: {
         margin: 8,
-        
         borderRadius: 6,
         backgroundColor: "lightgray",
       },
@@ -33,6 +32,6 @@ const styles = StyleSheet.create({
         padding: 8,
       },
       pressedItem:{
-        opacity:0.5,
+       opacity:.5,
       }
 });
